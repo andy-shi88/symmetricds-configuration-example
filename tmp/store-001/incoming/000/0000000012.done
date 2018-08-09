@@ -1,0 +1,11 @@
+nodeid,000
+binary,BASE64
+channel,account
+batch,12
+catalog,
+schema,
+table,account
+keys,DB_ID
+columns,DB_ID,ID,BALANCE,UNCONFIRMED_BALANCE,FORGED_BALANCE,ACTIVE_LESSEE_ID,HAS_CONTROL_PHASING,HEIGHT,LATEST
+insert,"12345","12345","12345","12345","1",,"0","12345","1"
+commit,12

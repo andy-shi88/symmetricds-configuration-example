@@ -1,0 +1,11 @@
+nodeid,001
+binary,BASE64
+channel,config
+batch,2
+catalog,
+schema,
+table,sym_node
+keys,node_id
+columns,node_id,node_group_id,external_id,heartbeat_time,timezone_offset,sync_enabled,sync_url,schema_version,symmetric_version,config_version,database_type,database_version,batch_to_send_count,batch_in_error_count,created_at_node_id,deployment_type,deployment_sub_type
+update,"001","store","001","2018-08-09 10:34:26.784000","+08:00","1","http://andy-Aspire-4755:31415/sync/store-001","?","3.9.9",,"PostgreSQL","9.5","-1","-1","000","server",,"001"
+commit,2
