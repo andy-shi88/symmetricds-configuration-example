@@ -9,7 +9,7 @@
 - run `bin/symadmin --engine corp-000 create-sym-tables` to initialize the configuration tables.
 - run `bin/dbimport --engine corp-000 versions/001/corp/initialize_link.sql` to initialize the basic configuration to our `corp-000` so it links to `store-001.properties`.
 - run `bin/dbimport --engine store-001 versions/001/store/create_asset_and_trade.sql` initialize target table.
-- run `bin/sym` at root directory.
+- run `bin/sym_service start` to run as service and `bin/sym_service stop` to stop the service.
 
 
 #### note
