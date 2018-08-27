@@ -17,8 +17,8 @@ delete from sym_node;
 insert into sym_node_group (node_group_id) values ('corp');
 insert into sym_node_group (node_group_id) values ('store');
 
-insert into sym_node_group_link (source_node_group_id, target_node_group_id, data_event_action) values ('corp', 'store', 'P');
-insert into sym_node_group_link (source_node_group_id, target_node_group_id, data_event_action) values ('store', 'corp', 'W');
+-- insert into sym_node_group_link (source_node_group_id, target_node_group_id, data_event_action) values ('corp', 'store', 'P');
+insert into sym_node_group_link (source_node_group_id, target_node_group_id, data_event_action) values ('corp', 'store', 'W');
 
 insert into sym_router 
 (router_id,source_node_group_id,target_node_group_id,router_type,create_time,last_update_time)
@@ -26,7 +26,7 @@ values('corp_2_store', 'corp', 'store', 'default',current_timestamp, current_tim
 
 insert into sym_channel 
 (channel_id, processing_order, max_batch_size, enabled, description)
-values('trade', 1, 100000, 1, 'blockchain trade table');
+values('trade', 1, 500, 1, 'blockchain trade table');
 
 insert into sym_trigger 
 (trigger_id,source_table_name,channel_id,last_update_time,create_time)
@@ -36,21 +36,21 @@ insert into sym_trigger_router
 (trigger_id,router_id,initial_load_order,last_update_time,create_time)
 values('trade','corp_2_store', 100, current_timestamp, current_timestamp);
 
+-- insert into sym_channel 
+-- (channel_id, processing_order, max_batch_size, enabled, description)
+-- values('block', 1, 500, 1, 'blockchain block table');
+
+-- insert into sym_trigger 
+-- (trigger_id,source_table_name,channel_id,last_update_time,create_time)
+-- values('block','block','block',current_timestamp,current_timestamp);
+
+-- insert into sym_trigger_router 
+-- (trigger_id,router_id,initial_load_order,last_update_time,create_time)
+-- values('block','corp_2_store', 100, current_timestamp, current_timestamp);
+
 insert into sym_channel 
 (channel_id, processing_order, max_batch_size, enabled, description)
-values('block', 1, 100000, 1, 'blockchain block table');
-
-insert into sym_trigger 
-(trigger_id,source_table_name,channel_id,last_update_time,create_time)
-values('block','block','block',current_timestamp,current_timestamp);
-
-insert into sym_trigger_router 
-(trigger_id,router_id,initial_load_order,last_update_time,create_time)
-values('block','corp_2_store', 100, current_timestamp, current_timestamp);
-
-insert into sym_channel 
-(channel_id, processing_order, max_batch_size, enabled, description)
-values('asset', 1, 100000, 1, 'blockchain asset table');
+values('asset', 1, 500, 1, 'blockchain asset table');
 
 insert into sym_trigger 
 (trigger_id,source_table_name,channel_id,last_update_time,create_time)
@@ -62,7 +62,7 @@ values('asset','corp_2_store', 100, current_timestamp, current_timestamp);
 
 insert into sym_channel 
 (channel_id, processing_order, max_batch_size, enabled, description)
-values('transaction', 1, 100000, 1, 'blockchain transaction table');
+values('transaction', 1, 500, 1, 'blockchain transaction table');
 
 insert into sym_trigger 
 (trigger_id,source_table_name,channel_id,last_update_time,create_time)
@@ -73,13 +73,26 @@ insert into sym_trigger_router
 values('transaction','corp_2_store', 100, current_timestamp, current_timestamp);
 
 
+insert into sym_channel 
+(channel_id, processing_order, max_batch_size, enabled, description)
+values('ACCOUNT_LEDGER', 1, 500, 1, 'blockchain ACCOUNT_LEDGER table');
+
+insert into sym_trigger 
+(trigger_id,source_table_name,channel_id,last_update_time,create_time, sync_on_update, sync_on_delete)
+values('ACCOUNT_LEDGER','ACCOUNT_LEDGER','ACCOUNT_LEDGER',current_timestamp,current_timestamp, 0, 0);
+
+insert into sym_trigger_router 
+(trigger_id,router_id,initial_load_order,last_update_time,create_time)
+values('ACCOUNT_LEDGER','corp_2_store', 100, current_timestamp, current_timestamp);
+
+
 insert into sym_node (node_id,node_group_id,external_id,sync_enabled,sync_url,schema_version,symmetric_version,database_type,database_version,heartbeat_time,timezone_offset,batch_to_send_count,batch_in_error_count,created_at_node_id) 
  values ('000','corp','000',1,null,null,null,null,null,current_timestamp,null,0,0,'000');
 insert into sym_node (node_id,node_group_id,external_id,sync_enabled,sync_url,schema_version,symmetric_version,database_type,database_version,heartbeat_time,timezone_offset,batch_to_send_count,batch_in_error_count,created_at_node_id) 
  values ('001','store','001',1,null,null,null,null,null,current_timestamp,null,0,0,'000');
 
 insert into sym_node_security (node_id,node_password,registration_enabled,registration_time,initial_load_enabled,initial_load_time,created_at_node_id) 
- values ('000','5d1c92bbacbe2edb9e1ca5dbb0e481',0,current_timestamp,0,current_timestamp,'000');
+ values ('000','5d1c92bbacbe2edb9e1ca5dbb0e481',1,current_timestamp,0,current_timestamp,'000');
 insert into sym_node_security (node_id,node_password,registration_enabled,registration_time,initial_load_enabled,initial_load_time,created_at_node_id) 
  values ('001','5d1c92bbacbe2edb9e1ca5dbb0e481',1,null,1,null,'000');
 
