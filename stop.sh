@@ -1,0 +1,1 @@
+bin/sym_service stop
