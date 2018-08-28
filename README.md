@@ -29,7 +29,11 @@
 
 ### Create table @store for new trigger
 - export the table query `bin/dbexport --engine corp-000 --compatible=postgres --no-data table_1 table_2 > versions/new_version/store`
-- 
+
+### deployment
+- run `initialize.sh` [first deployment only].
+- run `start.sh` to start the service.
+- run `stop.sh` to stop the service.
 
 ### Note
 - if you get `org.h2.jdbc.JdbcSQLException: Connection is broken: "unexpected status 16777216" [90067-176]`, most likely it's caused by different version of `h2 jar` between your java project and the symmetricds, just copy the jar so they are the same version.
